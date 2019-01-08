@@ -102,3 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+#Bot config files
+*.json
+
+#Other Notebooks
+*.ipynb
+
+#Logs
+*.log
