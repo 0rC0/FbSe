@@ -111,3 +111,6 @@ venv.bak/
 
 #Logs
 *.log
+
+#Firefox Profiles
+profiles/
