@@ -1,0 +1,11 @@
+{
+  "first_name": "first_name",
+  "last_name" : "last_name",
+  "email": "email",
+  "pw": "password",
+  "ff_profile_path": "path",
+  "pages_to_visit": ["url1",
+                     "url2",
+                     "url3"],
+  "data": "path file.json"
+}
