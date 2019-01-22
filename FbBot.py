@@ -8,6 +8,7 @@ from dateutil import parser
 from datetime import datetime
 import json
 
+# ToDo: Logger
 
 class FbBot():
 
@@ -94,6 +95,7 @@ class FbBot():
         """
         Main function, read timeline posts until everything is seen
         """
+        # FixMe: Infinite Loop
         self.login()
         read = False
         old_posts = (len(self.data_seen) if self.data_seen else 0)
