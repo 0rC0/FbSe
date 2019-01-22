@@ -107,7 +107,7 @@ venv.bak/
 *.json
 
 #Other Notebooks
-*.ipynb
+./*.ipynb
 
 #Logs
 *.log
