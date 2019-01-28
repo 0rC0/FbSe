@@ -10,6 +10,7 @@ import json
 
 # ToDo: Logger
 
+
 class FbBot():
 
     def __init__(self, config_file):
@@ -67,15 +68,6 @@ class FbBot():
         # ToDo: this has to become a: search page name, click on the 1st search result
         self.b.get(page)
 
-    def get_timestamps(self):
-        # can be ok to use the time frame as id?
-        posts = self.b.find_elements_by_xpath("//*[@class='_5pcr userContentWrapper']//div[@class='_6a _5u5j']")
-        if not posts:
-            self.scroll_down()
-        times = [p.get_attribute('title') for p in posts[0].find_elements_by_xpath("//*[@class='_5pcq']/abbr")]
-        timestamps = [datetime.timestamp(parser.parse(i)) for i in times]
-        return timestamps
-
     def write_json(self, data):
         with open(self.data_file, 'w') as f:
             json.dump(data, f)
@@ -90,6 +82,21 @@ class FbBot():
         """
         return all([(b in self.data_seen) for b in news])
 
+    def get_timestamps(self):
+        posts = self.b.find_elements_by_xpath("//*[@class='_5pcr userContentWrapper']//div[@class='_6a _5u5j']")
+        if not posts:
+            self.scroll_down()
+        times = [p.get_attribute('title') for p in posts[0].find_elements_by_xpath("//*[@class='_5pcq']/abbr")]
+        timestamps = [datetime.timestamp(parser.parse(i)) for i in times]
+        return timestamps
+
+    def get_ids(self):
+        # ToDo: parse ID
+        # i.e 'feed_subtitle_247;171844246207985;2175324222526634;2175324222526634;1548655205:-4404398567812951017:5:0'
+        # 171844246207985 = post_id, 2175324222526634 = photo
+        posts = self.b.find_elements_by_xpath("//*[@class='_5pcr userContentWrapper']//div[@class='_6a _5u5j']")
+        ids = [p.get_attribute('id').split(';')[1] for p in posts[0].find_element_by_xpath("//div[@class='_5pcp _5lel _2jyu _232_']")]
+        return ids
 
     def read_timeline(self):
         """
