@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as ec
 from time import sleep
@@ -23,8 +24,9 @@ class FbBot():
         self.pw = j['pw']
         self.to_visit = j['pages_to_visit']
         self.data_file = j['data']
-        self.data_seen = self.read_data_seen() if self.read_data_seen() else []
-        self.b = webdriver.Firefox(self.profile)
+        self.binary = FirefoxBinary(firefox_path=j['ff_binary'])
+        self.data_seen = '' #self.read_data_seen() if self.read_data_seen() else []
+        self.b = webdriver.Firefox(firefox_profile=self.profile, firefox_binary=self.binary)
 
     def __str__(self):
         return '{0} {1}'.format(str(self.first), str(self.last))

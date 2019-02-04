@@ -7,5 +7,6 @@
   "pages_to_visit": ["url1",
                      "url2",
                      "url3"],
-  "data": "path file.json"
+  "data": "path file.json",
+  "ff_binary": "path to firefox binary"
 }
